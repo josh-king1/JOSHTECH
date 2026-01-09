@@ -1,0 +1,29 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    /* background-image: url(JOUSHTECH\ logo.jpg); */
+}
+h2{
+    background-image: url(a0a5bb0189b8d5dde3f60a136976b461.jpg);
+    background-clip: text;
+    -webkit-background-clip: text;
+    background-size: 300% 300%;
+    color: transparent;
+    text-align: center;
+    font-size: 150px;
+    animation: animateText 20s ease infinite;
+}
+@keyframes animateText {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
