@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: darkgrey;
+        }
+    </style>
+</head>
+
+<body>
+    <h2> JOSHTECH</h2>
+    <input type="text" id="text" placeholder="Type Something....">
+    <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance(text.value))">Speak</button>
+</body>
+
+</html>
