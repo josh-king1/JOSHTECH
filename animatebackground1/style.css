@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: #0f2027;
+}
+
+/* Canvas */
+#bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Center Content */
+.main-content {
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(15px);
+    color: white;
+    width: 300px;
+
+    box-shadow:
+        0 0 20px rgba(0,0,0,0.3),
+        inset 0 0 10px rgba(255,255,255,0.1);
+
+    transition: 0.3s;
+}
+
+.glass-card:hover {
+    transform: scale(1.05);
+}
+
+.glass-card h1 {
+    font-size: 32px;
+}
+
+.glass-card p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+/* Button */
+.glass-card .btn {
+    border-radius: 50px;
+}
