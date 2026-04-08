@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center, #020111, #000);
+}
+
+/* Canvas */
+#galaxy {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+}
+
+/* UI */
+.main-content {
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255,255,255,0.06);
+    border-radius: 25px;
+    padding: 50px;
+    backdrop-filter: blur(15px);
+    color: white;
+    width: 320px;
+
+    box-shadow:
+        0 0 40px rgba(0,0,0,0.5),
+        inset 0 0 15px rgba(255,255,255,0.05);
+
+    transition: 0.4s;
+}
+
+.glass-card:hover {
+    transform: scale(1.05);
+}
+
+/* Button */
+.btn {
+    border-radius: 50px;
+}
