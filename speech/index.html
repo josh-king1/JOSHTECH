@@ -2,41 +2,240 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            flex-direction: column;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JoshTech Text to Speech</title>
 
-        input {
-            padding: 10px;
-            font-size: 16px;
-            margin-bottom: 10px;
-            width: 300px;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: darkgrey;
-        }
-    </style>
+body{
+    font-family:Segoe UI, sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+    background:#0f172a;
+}
+
+/* Animated Gradient Background */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(-45deg,#0ea5e9,#2563eb,#9333ea,#06b6d4);
+    background-size:400% 400%;
+    animation:gradientMove 12s ease infinite;
+    z-index:-3;
+}
+
+/* Floating Circles */
+.circle{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(8px);
+    animation:float 10s linear infinite;
+}
+
+.circle:nth-child(1){
+    width:120px;
+    height:120px;
+    top:10%;
+    left:8%;
+}
+
+.circle:nth-child(2){
+    width:180px;
+    height:180px;
+    bottom:10%;
+    right:10%;
+    animation-duration:14s;
+}
+
+.circle:nth-child(3){
+    width:70px;
+    height:70px;
+    top:70%;
+    left:20%;
+    animation-duration:8s;
+}
+
+/* Card */
+.container{
+    width:100%;
+    max-width:460px;
+    padding:32px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:0 25px 60px rgba(0,0,0,0.35);
+    text-align:center;
+    z-index:2;
+    animation:fadeUp 1s ease;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:800;
+    color:#fff;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+.sub{
+    color:#e2e8f0;
+    margin:8px 0 24px;
+    font-size:15px;
+}
+
+/* Textarea */
+textarea{
+    width:100%;
+    min-height:140px;
+    border:none;
+    outline:none;
+    resize:none;
+    padding:16px;
+    border-radius:16px;
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    font-size:16px;
+    margin-bottom:18px;
+}
+
+textarea::placeholder{
+    color:#cbd5e1;
+}
+
+/* Buttons */
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+button{
+    flex:1;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.speak{
+    background:#22c55e;
+    color:#fff;
+}
+
+.speak:hover{
+    transform:translateY(-3px) scale(1.02);
+    background:#16a34a;
+}
+
+.stop{
+    background:#ef4444;
+    color:#fff;
+}
+
+.stop:hover{
+    transform:translateY(-3px) scale(1.02);
+    background:#dc2626;
+}
+
+.footer{
+    margin-top:16px;
+    color:#cbd5e1;
+    font-size:13px;
+}
+
+/* Animations */
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+@keyframes float{
+    0%{transform:translateY(0px);}
+    50%{transform:translateY(-25px);}
+    100%{transform:translateY(0px);}
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:500px){
+    .buttons{
+        flex-direction:column;
+    }
+}
+</style>
 </head>
 
 <body>
-    <h2> JOSHTECH</h2>
-    <input type="text" id="text" placeholder="Type Something....">
-    <button onclick="speechSynthesis.speak(new SpeechSynthesisUtterance(text.value))">Speak</button>
+
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+
+<div class="container">
+    <div class="logo">JOSH<span>TECH</span></div>
+    <div class="sub">Text To Speech App</div>
+
+    <textarea id="text" placeholder="Type something here..."></textarea>
+
+    <div class="buttons">
+        <button class="speak" onclick="speakText()">🔊 Speak</button>
+        <button class="stop" onclick="stopText()">⏹ Stop</button>
+    </div>
+
+    <div class="footer">DONE MY JOSHUA AKAWE</div>
+</div>
+
+<script>
+function speakText(){
+    let txt = document.getElementById("text").value;
+
+    if(txt.trim() === ""){
+        alert("Please type something first.");
+        return;
+    }
+
+    let speech = new SpeechSynthesisUtterance(txt);
+    speech.rate = 1;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(speech);
+}
+
+function stopText(){
+    speechSynthesis.cancel();
+}
+</script>
+
 </body>
 
 </html>
