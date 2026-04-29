@@ -19,7 +19,7 @@
 
 body.light{
     --bg:#f5f7fa;
-    --card:rgba(255,255,255,.85);
+    --card:rgba(255,255,255,.9);
     --text:#111827;
     --muted:#475569;
     --line:rgba(0,0,0,.08);
@@ -38,79 +38,46 @@ body{
     font-family:Segoe UI,sans-serif;
     min-height:100vh;
     overflow:hidden;
-    position:relative;
     transition:.4s ease;
 }
 
-/* Better Animated Background */
+/* BACKGROUND */
 .bg{
     position:fixed;
     inset:0;
     z-index:-3;
-    overflow:hidden;
 }
 
 .blob{
     position:absolute;
     border-radius:50%;
     filter:blur(70px);
-    opacity:.55;
+    opacity:.6;
     animation:float 14s infinite ease-in-out alternate;
 }
 
-.b1{
-    width:260px;
-    height:260px;
-    background:#00d9ff;
-    top:5%;
-    left:5%;
-}
-
-.b2{
-    width:240px;
-    height:240px;
-    background:#7c3aed;
-    right:8%;
-    top:20%;
-    animation-delay:2s;
-}
-
-.b3{
-    width:260px;
-    height:260px;
-    background:#00ff95;
-    bottom:8%;
-    left:18%;
-    animation-delay:4s;
-}
-
-.b4{
-    width:220px;
-    height:220px;
-    background:#ff008c;
-    bottom:10%;
-    right:10%;
-    animation-delay:1s;
-}
+.b1{width:260px;height:260px;background:#00d9ff;top:5%;left:5%;}
+.b2{width:240px;height:240px;background:#7c3aed;top:20%;right:8%;animation-delay:2s;}
+.b3{width:260px;height:260px;background:#00ff95;bottom:8%;left:18%;animation-delay:4s;}
+.b4{width:220px;height:220px;background:#ff008c;bottom:10%;right:10%;animation-delay:1s;}
 
 .overlay{
     position:absolute;
     inset:0;
     background:rgba(0,0,0,.55);
-    transition:.4s;
 }
 
 body.light .overlay{
     background:rgba(255,255,255,.35);
 }
 
-/* Card */
+/* CARD */
 .main-card{
     background:var(--card);
     border:1px solid var(--line);
     backdrop-filter:blur(18px);
     border-radius:28px;
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
+    box-shadow:0 25px 60px rgba(0,0,0,.35);
 }
 
 .brand{
@@ -122,6 +89,7 @@ body.light .overlay{
     color:var(--primary);
 }
 
+/* CLOCK */
 .live-time{
     font-size:2rem;
     font-weight:800;
@@ -132,52 +100,43 @@ body.light .overlay{
     color:var(--muted);
 }
 
+/* STOPWATCH */
 .watch{
-    font-size:3.1rem;
+    font-size:3rem;
     font-weight:900;
-    letter-spacing:3px;
+    letter-spacing:2px;
 }
 
-.panel{
-    background:rgba(255,255,255,.03);
-    border-radius:22px;
-}
-
-body.light .panel{
-    background:rgba(0,0,0,.03);
-}
-
-/* Better Toggle */
+/* TOGGLE */
 .switch{
-    width:64px;
-    height:34px;
+    width:60px;
+    height:32px;
     background:var(--line);
     border-radius:50px;
     position:relative;
     cursor:pointer;
-    transition:.3s;
 }
 
 .knob{
-    position:absolute;
-    top:4px;
-    left:4px;
     width:26px;
     height:26px;
     background:var(--primary);
     border-radius:50%;
-    transition:.35s ease;
+    position:absolute;
+    top:3px;
+    left:3px;
+    transition:.3s;
 }
 
 body.light .knob{
-    transform:translateX(30px);
+    transform:translateX(28px);
 }
 
-/* Buttons */
+/* BUTTONS */
 .btnx{
     padding:13px;
     border:none;
-    border-radius:16px;
+    border-radius:14px;
     font-weight:700;
     transition:.3s;
 }
@@ -190,15 +149,17 @@ body.light .knob{
 .pause{background:#f59e0b;color:#fff;}
 .reset{background:#ef4444;color:#fff;}
 
+/* ANIMATION */
 @keyframes float{
     0%{transform:translate(0,0) scale(1);}
-    50%{transform:translate(30px,-40px) scale(1.12);}
+    50%{transform:translate(30px,-40px) scale(1.1);}
     100%{transform:translate(-25px,30px) scale(.95);}
 }
 
+/* RESPONSIVE */
 @media(max-width:576px){
     .watch{font-size:2.2rem;}
-    .live-time{font-size:1.45rem;}
+    .live-time{font-size:1.4rem;}
 }
 </style>
 </head>
@@ -219,6 +180,7 @@ body.light .knob{
 
 <div class="main-card p-4 p-md-5">
 
+    <!-- HEADER -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="brand">JOSH<span>TECH</span></div>
 
@@ -227,13 +189,15 @@ body.light .knob{
         </div>
     </div>
 
+    <!-- CLOCK -->
     <div class="text-center mb-4">
         <div id="liveTime" class="live-time">00:00:00</div>
         <div id="liveDate" class="live-date">Loading...</div>
     </div>
 
-    <div class="panel text-center p-4">
-        <div id="display" class="watch mb-4">00:00:00</div>
+    <!-- STOPWATCH -->
+    <div class="text-center p-4" style="background:rgba(255,255,255,.03); border-radius:20px;">
+        <div id="display" class="watch mb-4">00:00:00:00</div>
 
         <div class="row g-3">
             <div class="col-12 col-md-4">
@@ -255,56 +219,72 @@ body.light .knob{
 </div>
 
 <script>
-/* Perfect Toggle */
+
+/* THEME */
 function toggleTheme(){
     document.body.classList.toggle("light");
 }
 
-/* Clock */
+/* CLOCK */
 function updateClock(){
     const now = new Date();
-    document.getElementById("liveTime").innerHTML =
-        now.toLocaleTimeString();
-
-    document.getElementById("liveDate").innerHTML =
-        now.toDateString();
+    document.getElementById("liveTime").innerText = now.toLocaleTimeString();
+    document.getElementById("liveDate").innerText = now.toDateString();
 }
 setInterval(updateClock,1000);
 updateClock();
 
-/* Stopwatch */
-let h=0,m=0,s=0,timer=null;
+/* STOPWATCH (FIXED ACCURATE VERSION) */
+let h=0,m=0,s=0,ms=0;
+let timer=null;
 
 function show(){
-document.getElementById("display").innerHTML =
-String(h).padStart(2,'0') + ":" +
-String(m).padStart(2,'0') + ":" +
-String(s).padStart(2,'0');
+    document.getElementById("display").innerText =
+    String(h).padStart(2,'0') + ":" +
+    String(m).padStart(2,'0') + ":" +
+    String(s).padStart(2,'0') + ":" +
+    String(ms).padStart(2,'0');
 }
 
 function run(){
-s++;
-if(s===60){s=0;m++;}
-if(m===60){m=0;h++;}
-show();
+    ms += 10;
+
+    if(ms === 1000){
+        ms = 0;
+        s++;
+    }
+
+    if(s === 60){
+        s = 0;
+        m++;
+    }
+
+    if(m === 60){
+        m = 0;
+        h++;
+    }
+
+    show();
 }
 
 function startWatch(){
-if(timer!==null)return;
-timer=setInterval(run,1000);
+    if(timer) return;
+    timer = setInterval(run,10);
 }
 
 function pauseWatch(){
-clearInterval(timer);
-timer=null;
+    clearInterval(timer);
+    timer = null;
 }
 
 function resetWatch(){
-clearInterval(timer);
-timer=null;
-h=0;m=0;s=0;
-show();
+    clearInterval(timer);
+    timer = null;
+    h=m=s=ms=0;
+    show();
 }
+
+show();
 </script>
 
 </body>
