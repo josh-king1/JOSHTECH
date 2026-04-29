@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number Converter | JoshTech</title>
+
+<style>
+:root{
+    --bg:#f1f5f9;
+    --card:#ffffff;
+    --text:#0f172a;
+    --primary:#2563eb;
+    --border:#e2e8f0;
+}
+
+body.dark{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --text:#f1f5f9;
+    --primary:#38bdf8;
+    --border:#334155;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI', sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    transition:0.3s;
+}
+
+/* Container */
+.container{
+    width:100%;
+    max-width:500px;
+    background:var(--card);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Header */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:800;
+}
+
+.logo span{
+    color:var(--primary);
+}
+
+/* Toggle */
+.toggle{
+    cursor:pointer;
+    background:var(--border);
+    border-radius:20px;
+    padding:5px 10px;
+    font-size:14px;
+}
+
+/* Inputs */
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+input, select{
+    width:100%;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-size:15px;
+    background:transparent;
+    color:var(--text);
+    text-transform: uppercase;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:var(--primary);
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+/* Result */
+.result{
+    margin-top:20px;
+    padding:15px;
+    border-radius:12px;
+    background:var(--border);
+    text-align:center;
+    font-weight:600;
+    word-break:break-all;
+}
+
+/* Responsive */
+@media(max-width:480px){
+    .container{
+        padding:20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <div class="logo">JOSH<span>TECH</span></div>
+        <div class="toggle" onclick="toggleTheme()">🌙 / ☀️</div>
+    </div>
+
+    <div class="input-group">
+        <label>Enter Number</label>
+        <input type="text" id="number" placeholder="e.g 1010" >
+    </div>
+
+    <div class="input-group">
+        <label>From</label>
+        <select id="fromBase">
+            <option value="2">Binary</option>
+            <option value="8">Octal</option>
+            <option value="10" selected>Decimal</option>
+            <option value="16">Hexadecimal</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>To</label>
+        <select id="toBase">
+            <option value="2">Binary</option>
+            <option value="8">Octal</option>
+            <option value="10">Decimal</option>
+            <option value="16" selected>Hexadecimal</option>
+        </select>
+    </div>
+
+    <button onclick="convert()">Convert</button>
+
+    <div class="result" id="result">Result will appear here</div>
+
+</div>
+
+<script>
+function convert(){
+    let num = document.getElementById("number").value.trim();
+    let from = parseInt(document.getElementById("fromBase").value);
+    let to = parseInt(document.getElementById("toBase").value);
+    let resultBox = document.getElementById("result");
+
+    if(num === ""){
+        resultBox.innerHTML = "⚠ Enter a number";
+        return;
+    }
+
+    let decimal = parseInt(num, from);
+
+    if(isNaN(decimal)){
+        resultBox.innerHTML = "❌ Invalid input";
+        return;
+    }
+
+    resultBox.innerHTML = decimal.toString(to).toUpperCase();
+}
+
+/* Theme Toggle */
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>
