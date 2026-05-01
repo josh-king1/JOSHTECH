@@ -204,7 +204,7 @@ body.light .knob{
                 <button class="btnx start w-100" onclick="startWatch()">Start</button>
             </div>
             <div class="col-12 col-md-4">
-                <button class="btnx pause w-100" onclick="pauseWatch()">Pause</button>
+                <button class="btnx pause w-100" onclick="pauseWatch()">Stop</button>
             </div>
             <div class="col-12 col-md-4">
                 <button class="btnx reset w-100" onclick="resetWatch()">Reset</button>
@@ -249,7 +249,7 @@ function show(){
 function run(){
     ms += 10;
 
-    if(ms === 1000){
+    if(ms === 100){
         ms = 0;
         s++;
     }
