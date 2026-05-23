@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<body style="margin:0;background:#000;overflow:hidden">
+<canvas id="c"></canvas>
+<script>
+  const ctx = c.getContext('2d');
+  let t = 0;
+  const draw = () => {
+    c.width = innerWidth; c.height = innerHeight;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, c.width, c.height);
+    for (let i = 0; i < 1000; i++) {
+      const r = 8 * Math.sqrt(i);
+      const a = i * 2.4 + t;
+      ctx.fillStyle = `hsl(${(i + t * 50) % 360}, 70%, 60%)`;
+      ctx.beginPath();
+      ctx.arc(c.width/2 + Math.cos(a) * r, c.height/2 + Math.sin(a) * r, 3, 0, 7);
+      ctx.fill();
+    }
+    t += 0.01;
+    requestAnimationFrame(draw);
+  };
+  draw();
+</script>
+</body>

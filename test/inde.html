@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<body style="margin:0; background:#0d1117; display:flex; height:100vh; align-items:center; justify-content:center; overflow:hidden;">
+
+  <div id="nav-container" style="position:relative; width:300px; height:300px; display:flex; align-items:center; justify-content:center;">
+    
+    <!-- The 9-Dot Trigger -->
+    <div id="trigger" style="display:grid; grid-template-columns:repeat(3,10px); gap:5px; cursor:pointer; z-index:100; transition:0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+      <div class="d" style="width:10px; height:10px; background:#58a6ff; border-radius:2px;"></div>
+    </div>
+
+    <!-- Social Media Icons (Hidden behind center) -->
+    <div id="social-grid" style="position:absolute; display:grid; grid-template-columns:repeat(3,60px); gap:20px; opacity:0; visibility:hidden; transition:0.4s ease; transform:scale(0.5);">
+      <!-- Row 1 -->
+      <div class="icon" style="background:#1877F2">FB</div>
+      <div class="icon" style="background:#1DA1F2">TW</div>
+      <div class="icon" style="background:#E4405F">IG</div>
+      <!-- Row 2 -->
+      <div class="icon" style="background:#0077B5">LN</div>
+      <div class="icon" style="background:#FF0000">YT</div>
+      <div class="icon" style="background:#25D366">WA</div>
+      <!-- Row 3 -->
+      <div class="icon" style="background:#BD081C">PN</div>
+      <div class="icon" style="background:#000000; border:1px solid #444">TK</div>
+      <div class="icon" style="background:#7289DA">DS</div>
+    </div>
+  </div>
+
+  <style>
+    .icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-family: sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      transition: 0.2s;
+    }
+    .icon:hover { transform: translateY(-5px); filter: brightness(1.2); }
+  </style>
+
+  <script>
+    const trigger = document.getElementById('trigger');
+    const menu = document.getElementById('social-grid');
+    const dots = document.querySelectorAll('.d');
+    let open = false;
+
+    trigger.onclick = () => {
+      open = !open;
+      
+      // Animation for the trigger dots
+      trigger.style.transform = open ? 'rotate(45deg) scale(1.2)' : 'rotate(0) scale(1)';
+      dots.forEach(d => d.style.background = open ? '#f85149' : '#58a6ff');
+
+      // Animation for the social grid
+      menu.style.opacity = open ? '1' : '0';
+      menu.style.visibility = open ? 'visible' : 'hidden';
+      menu.style.transform = open ? 'scale(1)' : 'scale(0.5)';
+      
+      // If open, pull the trigger to the front, if closed, it hides
+      trigger.style.opacity = open ? '0.3' : '1';
+    };
+  </script>
+</body>
+</html>
