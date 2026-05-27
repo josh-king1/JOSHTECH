@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 40px; /* Great for desktop/tablets */
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+h2 {
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.form-control {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+input[type="email"]:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+small {
+    color: #ef4444;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.otp-input {
+    flex: 1;            /* Dynamic sizing: inputs shrink or grow equally */
+    max-width: 45px;    /* Prevents them from stretching too wide */
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    min-width: 0;       /* Essential for allowing flex items to shrink below text size */
+}
+
+.otp-input:focus {
+    border-color: #2563eb;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+.resend {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.resend a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: 0 auto 20px;
+}
+
+/* ========================================== */
+/* RESPONSIVE MEDIA QUERY FOR MOBILE DEVICES   */
+/* ========================================== */
+@media (max-width: 400px) {
+    .container {
+        padding: 12px; /* Keeps the card from touching mobile screen edges */
+    }
+
+    .card {
+        padding: 30px 20px; /* Reduced padding gives content more room to breathe */
+    }
+
+    .otp-container {
+        gap: 6px; /* Narrower spacing matches compact screen sizes */
+    }
+
+    .otp-input {
+        height: 45px; /* Scales down heights slightly for phone viewports */
+        font-size: 18px;
+    }
+}

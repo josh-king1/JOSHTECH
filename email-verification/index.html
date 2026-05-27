@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Verification System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Step 1: Email Input -->
+        <div id="emailStep" class="card">
+            <h2>Verify Your Email</h2>
+            <p>Please enter your email address to receive a verification code.</p>
+            <div class="form-control">
+                <input type="email" id="emailInput" placeholder="name@example.com">
+                <small id="emailError">Invalid email format</small>
+            </div>
+            <button id="sendCodeBtn">Send Verification Code</button>
+        </div>
+
+        <!-- Step 2: OTP Input (Hidden by default) -->
+        <div id="otpStep" class="card hidden">
+            <h2>Enter Code</h2>
+            <p>We've sent a 6-digit code to <br><strong id="displayEmail"></strong></p>
+            <div class="otp-container">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+                <input type="text" class="otp-input" maxlength="1">
+            </div>
+            <button id="verifyBtn">Verify Account</button>
+            <p class="resend">Didn't receive code? <a href="#" id="resendBtn">Resend</a></p>
+        </div>
+
+        <!-- Step 3: Success Message (Hidden by default) -->
+        <div id="successStep" class="card hidden">
+            <div class="success-icon">✓</div>
+            <h2>Email Verified!</h2>
+            <p>Your email has been successfully verified. You can now proceed to your dashboard.</p>
+            <button onclick="location.reload()">Back to Start</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
