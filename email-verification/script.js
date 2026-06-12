@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             otpStep.classList.add('hidden');
             successStep.classList.remove('hidden');
         } else {
-            alert("Invalid code. Please try again (Hint: 123456)");
+            alert("Invalid code. ");
             otpInputs.forEach(input => input.value = "");
             otpInputs[0].focus();
         }

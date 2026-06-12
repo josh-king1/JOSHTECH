@@ -1,0 +1,90 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
+
+    background:
+    radial-gradient(circle at top,#5b0e2d,#17071f,#05020a);
+}
+
+/* Galaxy Canvas */
+#galaxy{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+}
+
+/* Glass Card */
+.love-card{
+    padding:60px;
+    border-radius:30px;
+
+    background:rgba(255,255,255,0.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+    0 10px 50px rgba(255,20,147,.2),
+    inset 0 0 20px rgba(255,255,255,.05);
+
+    color:white;
+}
+
+.love-card h1{
+    color:#ff6cab;
+
+    text-shadow:
+    0 0 20px #ff6cab,
+    0 0 40px #ff6cab;
+}
+
+.love-card p{
+    color:#ffd8ea;
+}
+
+/* Love Button */
+.btn-love{
+    padding:14px 40px;
+    border-radius:50px;
+    border:none;
+
+    background:
+    linear-gradient(
+    135deg,
+    #ff4d94,
+    #ff6cab
+    );
+
+    color:white;
+    font-weight:600;
+
+    transition:.4s;
+}
+
+.btn-love:hover{
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 0 20px #ff6cab,
+    0 0 40px #ff6cab;
+}
+
+/* Mobile */
+@media(max-width:768px){
+
+    .love-card{
+        padding:35px;
+    }
+
+    .love-card h1{
+        font-size:2.5rem;
+    }
+}
